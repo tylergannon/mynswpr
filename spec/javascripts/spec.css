@@ -1,0 +1,4 @@
+/*
+ * Include the css files needed for javascript tests.
+ *= require_tree ../../app/assets/stylesheets
+ */

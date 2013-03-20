@@ -1,0 +1,47 @@
+$square-width: 40px;
+$board-width: 8 * $square-width + 16px;
+
+body {
+  position: relative;
+}
+
+#gameboard {
+  width: $board-width;
+  height: $board-width;
+  border: 1px dashed black;
+  
+  span {
+    width: $square-width;
+    height: $square-width;
+    border: 1px dashed black;
+    display: inline-block;
+    
+    &:hover {
+      cursor: pointer;
+    }
+    
+    &.clicked {
+      background: gray;
+      &:hover {
+        cursor: default;
+      }
+    }
+  }
+  
+  &.boom {
+    background: red;
+
+    span {
+      &.mine {
+        background-color: orange;
+      }
+    }
+  }
+}
+
+#boom {
+  font-size: 100px;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+}
