@@ -25,16 +25,63 @@ body {
     height: $square-width;
     border: 1px dashed black;
     display: inline-block;
-    
+    color: white;
+    position: relative;
     &:hover {
       cursor: pointer;
     }
     
     &.clicked {
       background: gray;
+      color: black;
       &:hover {
         cursor: default;
       }
+      .mark_square {
+        display: none;
+      }
+    }
+    
+    .unmark_square {
+      display: none;
+    }
+    
+    &.marked {
+      background: yellow;
+      color: yellow;
+      &:hover {
+        cursor: default;
+      }
+      .mark_square {
+        display: none;
+      }
+      .unmark_square {
+        display: block;
+      }
+    }
+    
+    .controls {
+      position: absolute;
+      top: 0;
+      left: $square-width;
+      display: none;
+      
+      div {
+        padding: 4px;
+        background-color: yellow;
+      }
+      div:hover {
+        background-color: brown;
+      }
+    }
+    
+    &:hover .controls {
+      z-index: 100;
+      display: block;
+    }
+    
+    &.cleared:hover .controls {
+      display: none;
     }
   }
   
@@ -45,8 +92,15 @@ body {
       &.mine {
         background-color: orange;
       }
+      &:hover .controls {
+        display: none;
+      }
     }
   }
+}
+
+#template {
+  display: none;
 }
 
 #boom {

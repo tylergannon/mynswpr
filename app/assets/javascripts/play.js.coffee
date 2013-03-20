@@ -1,9 +1,12 @@
 $ ->
   flash 'Welcome to Mine Sweeper.'
-  $(document).on 'click', '#gameboard span', squareClicked
-  $(document).on 'click', '#new_game',       newGameClicked
-  $(document).on 'click', '#save_game',      saveGameClicked
-  $(document).on 'click', '#load_game',      loadGameClicked          
+  $(document).on 'click',    '.clear_adjacent a',   clearClicked
+  $(document).on 'click',    '.mark_square a',      markClicked
+  $(document).on 'click',    '.unmark_square a',    markClicked
+  $(document).on 'click',    '#gameboard span', squareClicked
+  $(document).on 'click',    '#new_game',       newGameClicked
+  $(document).on 'click',    '#save_game',      saveGameClicked
+  $(document).on 'click',    '#load_game',      loadGameClicked       
   startNewGame()
 
 window.flash = (message) ->
@@ -13,8 +16,7 @@ window.flash = (message) ->
     $message.remove()
     
 squareClicked = (e) ->
-  e.preventDefault()
-  unless game.over
+  unless game.boom
     game.click $(this).data('id')
     drawBoard()
 
@@ -38,16 +40,37 @@ startNewGame = (new_game) ->
   window.game = new_game
   drawBoard()
   
+clearClicked = (e) ->
+  e.preventDefault()
+  game.clear $(this).parents('span').data('id')
+  drawBoard()
+  return false
+
+markClicked = (e) ->
+  e.preventDefault()
+  game.toggleMarking $(this).parents('span').data('id')
+  drawBoard()
+  return false
+  
 drawBoard = () ->
   $('#canvas').html('<div id="gameboard" />')
   
-  if game.over
+  if game.boom
     $('#gameboard').addClass('boom')
     $('#canvas').append('<div id="boom">Aww Crap!</div>')
   
   for i in [0..game.squares.length-1]
     square = game.squares[i]
-    $element = $ '<span>&nbsp;</span>'
+    $element = $ '<span/>'
+    if square.adjacentMines > 0
+      $element.addClass 'adjacentMines' + square.adjacentMines.toString()
+      $element.html square.adjacentMines.toString()
+    else
+      $element.addClass 'adjacentMines0'
+      $element.html '&nbsp;'
+      
+    $element.append $('#template .controls').clone()
+      
     $element.data('id', i)
     
     if square.clicked
@@ -55,6 +78,12 @@ drawBoard = () ->
     
     if square.isMine
       $element.addClass('mine')
+      
+    if square.marked
+      $element.addClass('marked')
+      
+    if square.cleared
+      $element.addClass('cleared')
       
     $('#gameboard').append($element)
 
