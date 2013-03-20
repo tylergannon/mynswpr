@@ -45,12 +45,12 @@ class Game
     @squares.filter((x) -> return true if x.marked)
     
   validate: () ->
-    if getMarkedSquares().length == @mines
-      for square in getMarkedSquares()
-        if square.isMine
+    if @getMarkedSquares().length == @mines
+      for square in @getMarkedSquares()
+        if !square.isMine
           @boom = true
           return false
-      
+      @win = true
 
     return true
     
@@ -111,8 +111,7 @@ Game.fromJSON = (data) ->
 
 class Square
   constructor: (@isMine, @clicked, @adjacentMines, @marked, @cleared) ->
-    @clicked ?= false
-
+    @clicked ?= false  
 
 window.MineSweeper =
   Game: Game

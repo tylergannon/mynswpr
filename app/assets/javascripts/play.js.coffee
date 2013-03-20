@@ -55,9 +55,15 @@ markClicked = (e) ->
 drawBoard = () ->
   $('#canvas').html('<div id="gameboard" />')
   
+  game.validate()
+  
   if game.boom
     $('#gameboard').addClass('boom')
     $('#canvas').append('<div id="boom">Aww Crap!</div>')
+    
+  if game.win
+    $('#gameboard').addClass('boom')
+    $('#canvas').append('<div id="boom">Yayyyyy!</div>')
   
   for i in [0..game.squares.length-1]
     square = game.squares[i]
@@ -87,3 +93,10 @@ drawBoard = () ->
       
     $('#gameboard').append($element)
 
+
+window.winGame = () ->
+  for square in game.squares
+    if square.isMine
+      square.marked = true
+  drawBoard()
+  
