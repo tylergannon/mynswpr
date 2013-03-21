@@ -68,12 +68,14 @@ drawBoard = () ->
   for i in [0..game.squares.length-1]
     square = game.squares[i]
     $element = $ '<span/>'
+    $element.append '<div class="content" />'
+      
     if square.adjacentMines > 0
       $element.addClass 'adjacentMines' + square.adjacentMines.toString()
-      $element.html square.adjacentMines.toString()
+      $element.find('.content').html square.adjacentMines.toString()
     else
       $element.addClass 'adjacentMines0'
-      $element.html '&nbsp;'
+      $element.find('.content').html '&nbsp;'
       
     $element.append $('#template .controls').clone()
       
