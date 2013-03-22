@@ -252,10 +252,16 @@
     return startNewGame();
   });
 
-  window.flash = function(message) {
+  window.flash = function(message, image) {
     var $message;
 
     $message = $('<div class="message">' + message + '</div>');
+    if (image != null) {
+      $message.css('background-image', image);
+      $message.css('background-size', '90px');
+      $message.css('background-repeat', 'no-repeat');
+      $message.css('text-indent', '90px');
+    }
     $('.flash').append($message);
     return $message.fadeOut(3000, function() {
       return $message.remove();
@@ -275,7 +281,7 @@
     e.preventDefault();
     new_game = new MineSweeper.Game($(this).data('size'), $(this).data('mines'));
     startNewGame(new_game);
-    return flash('Mayest thou not be scorched.');
+    return flash($(this).data('message'), $(this).css('background-image'));
   };
 
   saveGameClicked = function(e) {

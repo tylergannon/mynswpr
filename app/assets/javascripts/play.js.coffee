@@ -10,8 +10,13 @@ $ ->
   $(document).on 'click',    '#validate',       validateClicked       
   startNewGame()
 
-window.flash = (message) ->
+window.flash = (message, image) ->
   $message = $('<div class="message">' + message + '</div>')
+  if image?
+    $message.css('background-image', image)
+    $message.css('background-size', '90px')
+    $message.css('background-repeat', 'no-repeat')
+    $message.css('text-indent', '90px')
   $('.flash').append $message
   $message.fadeOut 3000, () ->
     $message.remove()
@@ -24,9 +29,8 @@ squareClicked = (e) ->
 newGameClicked = (e) ->
   e.preventDefault()
   new_game = new MineSweeper.Game($(this).data('size'), $(this).data('mines'))
-  
   startNewGame(new_game)
-  flash 'Mayest thou not be scorched.'
+  flash $(this).data('message'), $(this).css('background-image')
 
 saveGameClicked =  (e) ->
   e.preventDefault()
