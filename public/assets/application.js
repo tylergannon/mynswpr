@@ -237,7 +237,7 @@
 
 }).call(this);
 (function() {
-  var clearClicked, drawBoard, loadGameClicked, markClicked, newGameClicked, resetTimer, saveGameClicked, squareClicked, startNewGame, stopTimer, validateClicked;
+  var clearClicked, drawBoard, loadGameClicked, markClicked, newGameClicked, resetTimer, saveGameClicked, squareClicked, startNewGame, validateClicked;
 
   $(function() {
     flash('Welcome to Mine Sweeper.');
@@ -332,11 +332,8 @@
   resetTimer = function() {
     $("#seconds").text("00");
     $("#minutes").text("00");
+    clearInterval(window.timer);
     return window.timer = setInterval("showTime()", 1000);
-  };
-
-  stopTimer = function() {
-    return clearInterval(window.timer);
   };
 
   window.showTime = function() {

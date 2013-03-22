@@ -71,10 +71,8 @@ validateClicked = (e) ->
 resetTimer = ->
   $("#seconds").text "00"
   $("#minutes").text "00"
-  window.timer = setInterval "showTime()", 1000
-
-stopTimer = ->
   clearInterval window.timer
+  window.timer = setInterval "showTime()", 1000
 
 window.showTime = ->
   s = parseInt($("#seconds").text())
