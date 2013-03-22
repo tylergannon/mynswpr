@@ -96,6 +96,8 @@ drawBoard = () ->
     $('#gameboard').addClass('boom')
     $('#canvas').append('<div id="boom">Yayyyyy!</div>')
     stopTimer()
+
+  $('#gameboard').addClass('size' + game.size.toString())
     
   $('#mine_count').text game.minesRemaining()
   
