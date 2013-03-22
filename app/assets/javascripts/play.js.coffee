@@ -4,9 +4,10 @@ $ ->
   $(document).on 'click',    '.mark_square a',      markClicked
   $(document).on 'click',    '.unmark_square a',    markClicked
   $(document).on 'click',    '#gameboard span', squareClicked
-  $(document).on 'click',    '#new_game',       newGameClicked
+  $(document).on 'click',    '#new_game_easy',  newGameClicked
   $(document).on 'click',    '#save_game',      saveGameClicked
   $(document).on 'click',    '#load_game',      loadGameClicked       
+  $(document).on 'click',    '#validate',       validateClicked       
   startNewGame()
 
 window.flash = (message) ->
@@ -39,6 +40,7 @@ startNewGame = (new_game) ->
   new_game ?= new MineSweeper.Game()
   window.game = new_game
   drawBoard()
+  resetTimer()
   
 clearClicked = (e) ->
   e.preventDefault()
@@ -52,22 +54,55 @@ markClicked = (e) ->
   drawBoard()
   return false
   
+validateClicked = (e) ->
+  e.preventDefault()
+  flash("You haven't marked all the mines yet!") unless game.validate()
+  return false
+
+resetTimer = ->
+  $("#seconds").text "00"
+  $("#minutes").text "00"
+  window.timer = setInterval "showTime()", 1000
+
+stopTimer = ->
+  clearInterval window.timer
+
+window.showTime = ->
+  s = parseInt($("#seconds").text())
+  m = parseInt($("#minutes").text())
+  s++
+  if s > 59
+    s = 0
+    m++
+  if s < 10
+    s = "0" + s.toString()
+  if m < 10
+    m = "0" + m.toString()
+  $("#seconds").text s
+  $("#minutes").text m
+
+
 drawBoard = () ->
   $('#canvas').html('<div id="gameboard" />')
-  
-  game.validate()
   
   if game.boom
     $('#gameboard').addClass('boom')
     $('#canvas').append('<div id="boom">Aww Crap!</div>')
+    stopTimer()
     
   if game.win
     $('#gameboard').addClass('boom')
     $('#canvas').append('<div id="boom">Yayyyyy!</div>')
+    stopTimer()
+    
+  $('#mine_count').text game.minesRemaining()
   
   for i in [0..game.squares.length-1]
     square = game.squares[i]
     $element = $ '<span/>'
+
+    $element.append $('#template .controls').clone()
+
     $element.append '<div class="content" />'
       
     if square.adjacentMines > 0
@@ -77,7 +112,6 @@ drawBoard = () ->
       $element.addClass 'adjacentMines0'
       $element.find('.content').html '&nbsp;'
       
-    $element.append $('#template .controls').clone()
       
     $element.data('id', i)
     

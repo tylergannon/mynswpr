@@ -6,6 +6,7 @@
     <link href="/assets/application.css?body=1" media="screen" rel="stylesheet" />
     <link href="/assets/gameboard.css?body=1" media="screen" rel="stylesheet" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
     <script src="/assets/game.js?body=1"></script>
     <script src="/assets/play.js?body=1"></script>
     <script src="/assets/application.js?body=1"></script>
@@ -13,11 +14,41 @@
     <meta content="3rmfvKAsfYf05Yh4mV39DQCESpO07rqQCCzYVVBkelo=" name="csrf-token" />
   </head>
   <body>
-    <div id="game_controls">
-      <a href="#" id="new_game">New Game</a>
-      <a href="#" id="save_game">Save Game</a>
-      <a href="#" id="load_game">Load Game</a>
+    <div id="nav">
+      <ul id="game_controls" class="nav">
+        <li>
+          <a href="#" id="new_game">&nbsp;</a>
+          <ul class="subnav">
+            <li>
+              <a href="#" id="new_game_easy"></a>
+            </li>
+            <li>
+              <a href="#" id="new_game_medium"></a>
+            </li>
+            <li>
+              <a href="#" id="new_game_hard"></a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" id="save_game">&nbsp;</a>
+        </li>
+        <li>
+          <a href="#" id="load_game">&nbsp;</a>
+        </li>
+        <li id="clock">
+          <a href="#">
+            <span id="minutes">00</span><span>:</span><span id="seconds">00</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" id="mine_count">
+          </a>
+        </li>
+        <li><a href="#" id="validate"></a></li>
+      </ul>
     </div>
+    
     <div id="canvas">
       <div id="gameboard"></div>
     </div>
@@ -26,12 +57,15 @@
       <div class="controls">
         <div class="clear_adjacent">
           <a href="#">Clear</a>
+          <div class="fun">&nbsp;</div>
         </div>
         <div class="mark_square">
           <a href="#">Mark</a>
+          <div class="fun">&nbsp;</div>
         </div>
         <div class="unmark_square">
           <a href="#">UnMark</a>
+          <div class="fun">&nbsp;</div>
         </div>
       </div>
     </div>

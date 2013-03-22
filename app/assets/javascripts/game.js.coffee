@@ -27,7 +27,14 @@ class Game
       i--
 
     return null
-    
+  
+  minesRemaining: () ->
+    mines = @mines - @getMarkedSquares().length
+    if mines < 10
+      return "0" + mines.toString()
+    else
+      return mines
+  
   setAdjacentMinesCount: () ->
     for i in [0..@squares.length-1]
       @squares[i].adjacentMines = @getAdjacentMines(i)
@@ -49,10 +56,9 @@ class Game
       for square in @getMarkedSquares()
         if !square.isMine
           @boom = true
-          return false
       @win = true
-
-    return true
+      return true
+    return false
     
     
       
