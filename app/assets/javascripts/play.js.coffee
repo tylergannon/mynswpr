@@ -58,7 +58,10 @@ markClicked = (e) ->
   
 validateClicked = (e) ->
   e.preventDefault()
-  flash("You haven't marked all the mines yet!") unless game.validate()
+  if game.validate()
+    drawBoard()
+  else
+    flash("You haven't marked all the mines yet!")
   return false
 
 resetTimer = ->
@@ -89,12 +92,14 @@ drawBoard = () ->
   
   if game.boom
     $('#gameboard').addClass('boom')
-    $('#canvas').append('<div id="boom">Aww Crap!</div>')
+    flash('Awwwwww Crap!')
+    # $('#canvas').append('<div id="boom">Aww Crap!</div>')
     stopTimer()
     
   if game.win
     $('#gameboard').addClass('boom')
-    $('#canvas').append('<div id="boom">Yayyyyy!</div>')
+    flash('Yayyyyyy!!!')
+    # $('#canvas').append('<div id="boom">Yayyyyy!</div>')
     stopTimer()
 
   $('#gameboard').addClass('size' + game.size.toString())

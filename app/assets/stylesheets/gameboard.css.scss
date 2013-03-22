@@ -1,8 +1,7 @@
-$square-width: 60px;
-$control-size: $square-width / 2.5;
-$board-width: 8 * $square-width + 8 * 2 * 4px;
 
-@mixin board-dimensions($size, $square-width) {
+@mixin board-dimensions($size, $square-width, $border-width, $font-size) {
+  $control-size: $square-width / 2.5;
+  $board-width: $size * $square-width + $size * 2 * $border-width;
   width: $board-width;
   height: $board-width;
   .controls {
@@ -16,8 +15,17 @@ $board-width: 8 * $square-width + 8 * 2 * 4px;
   span {
     width: $square-width;
     height: $square-width;
+    border: $border-width solid black;
+    .content {
+      font-size: $font-size;
+      opacity: 0.8;
+    }
   }
+}
 
+@mixin happy-font {
+  font-size: 50pt;
+  font-family: 'VT323', cursive;
 }
 
 body {
@@ -27,16 +35,25 @@ body {
 
 .flash {
   position: absolute;
-  left: 40%;
+  left: 0%;
+  @include happy-font;
   top: 0;
   .message {
     background-color: red;
     padding: 10px;
+    border-radius: 22px;
   }
 }
 
 #gameboard {
   &.size8 {
+    @include board-dimensions(8, 60px, 4px, 24pt);
+  }
+  &.size16 {
+    @include board-dimensions(16, 45px, 2px, 16pt);
+  }
+  &.size22 {
+    @include board-dimensions(22, 40px, 1px, 14pt);
   }
 }
 
@@ -57,16 +74,10 @@ body {
   border: 4px solid black;
   
   span {
-    border: 4px solid black;
     display: inline-block;
     color: white;
     vertical-align: bottom;
     
-    .content {
-      font-size: 24pt;
-      text-indent: 12px;
-      opacity: 0.5;
-    }
     
     &:hover {
       cursor: pointer;
@@ -195,8 +206,7 @@ body {
     display: inline-block;
     text-decoration: none;
     position: relative;
-    font-size: 50pt;
-    font-family: 'VT323', cursive;
+    @include happy-font;
     line-height: 42px;
   }
   &:hover * {
@@ -256,6 +266,17 @@ a#mine_count {
 #boom {
   font-size: 100px;
   position: absolute;
-  top: 100px;
+  top: 300px;
   left: 100px;
+}
+
+#title {
+  word-wrap: break-word;  
+  @include happy-font;
+  position: absolute;
+  left: 44px;
+  top: 160px;
+  opacity: 0.3;
+  
+  width: 25px;
 }
