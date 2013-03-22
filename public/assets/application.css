@@ -89,7 +89,8 @@ body {
   #gameboard span {
     display: inline-block;
     color: white;
-    vertical-align: bottom; }
+    vertical-align: bottom;
+    z-index: 0; }
     #gameboard span:hover {
       cursor: pointer; }
     #gameboard span.clicked {
@@ -123,7 +124,7 @@ body {
         width: 300px;
         background-size: 300px;
         background-repeat: no-repeat;
-        z-index: 0;
+        z-index: -100;
         top: 80px;
         left: 700px; }
       #gameboard span .controls div:hover .fun {
