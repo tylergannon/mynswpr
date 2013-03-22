@@ -314,7 +314,9 @@
 
   validateClicked = function(e) {
     e.preventDefault();
-    if (!game.validate()) {
+    if (game.validate()) {
+      drawBoard();
+    } else {
       flash("You haven't marked all the mines yet!");
     }
     return false;
