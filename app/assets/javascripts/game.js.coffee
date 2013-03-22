@@ -56,6 +56,8 @@ class Game
       for square in @getMarkedSquares()
         if !square.isMine
           @boom = true
+          return true
+          
       @win = true
       return true
     return false

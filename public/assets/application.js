@@ -101,6 +101,7 @@
           square = _ref[_i];
           if (!square.isMine) {
             this.boom = true;
+            return true;
           }
         }
         this.win = true;
