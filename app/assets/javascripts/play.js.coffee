@@ -4,7 +4,7 @@ $ ->
   $(document).on 'click',    '.mark_square a',      markClicked
   $(document).on 'click',    '.unmark_square a',    markClicked
   $(document).on 'click',    '#gameboard span', squareClicked
-  $(document).on 'click',    '#new_game_easy',  newGameClicked
+  $(document).on 'click',    'a.new_game',      newGameClicked
   $(document).on 'click',    '#save_game',      saveGameClicked
   $(document).on 'click',    '#load_game',      loadGameClicked       
   $(document).on 'click',    '#validate',       validateClicked       
@@ -23,7 +23,9 @@ squareClicked = (e) ->
 
 newGameClicked = (e) ->
   e.preventDefault()
-  startNewGame()
+  new_game = new MineSweeper.Game($(this).data('size'), $(this).data('mines'))
+  
+  startNewGame(new_game)
   flash 'Mayest thou not be scorched.'
 
 saveGameClicked =  (e) ->

@@ -1,8 +1,8 @@
 
 class Game
-  constructor: () ->
-    @size = 8
-    @mines = 10
+  constructor: (@size, @mines) ->
+    @size ?= 8
+    @mines ?= 10
     @boom = false
     @squares = (new Square(true) for num in [1..@mines])
     for num in [@mines..(@size*@size)-1]

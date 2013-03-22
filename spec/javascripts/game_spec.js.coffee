@@ -187,4 +187,16 @@ describe "Game", ->
           game.squares[9].isMine = false
           expect(game.getAdjacentMines(0)).toEqual(2)
           
+  describe "Game difficulty", ->
+    beforeEach ->
+      game = new MineSweeper.Game(16, 40)
       
+    it "should receive the size constructor", ->
+      expect(game.size).toEqual(16)
+    it "should receive the mines constructor", ->
+      expect(game.mines).toEqual(40)
+
+
+    # 8: 10
+    # 16: 40
+    # 22: 99
