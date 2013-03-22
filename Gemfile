@@ -10,4 +10,5 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'jquery-rails'
 gem 'jasminerice', github: 'bradphelan/jasminerice'

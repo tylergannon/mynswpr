@@ -5,7 +5,7 @@
 describe "Application", ->
   beforeEach ->
     loadFixtures 'example_fixture.html' # located at 'spec/javascripts/fixtures/example_fixture.html.haml'
-    $('#new_game').click()
+    $('#new_game_easy').click()
   
   describe "When 'new game' is clicked", ->
     it "should add span elements to the game board", ->
@@ -58,7 +58,7 @@ describe "Application", ->
     describe "After saving and starting a new game", ->
       beforeEach ->
         $('#save_game').click()
-        $('#new_game').click()
+        $('#new_game_easy').click()
         
       it "should be a new game now", ->
         expect($('#gameboard span.clicked').length).toEqual(0)
