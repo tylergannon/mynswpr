@@ -2,13 +2,25 @@ class View
   constructor: (@game) ->
     @board = $('<div id="gameboard" />')
     
+    
+  losers:
+    [
+      'http://cdn.memegenerator.net/instances/400x/36522451.jpg',
+      'http://cdn.memegenerator.net/instances/400x/36522530.jpg',
+      'http://cdn.memegenerator.net/instances/400x/36522861.jpg',
+      'http://cdn.memegenerator.net/instances/400x/36522965.jpg',
+      'http://cdn.memegenerator.net/instances/400x/36523338.jpg',
+      'http://cdn.memegenerator.net/instances/400x/36523457.jpg'
+      ]
+    
+    
   drawBoard: () ->
   # $('#canvas').html('<div id="gameboard" />')
   
     if @game.boom
       @board.addClass('boom')
       flash('Awwwwww Crap!')
-      flash('<img src="'  + losers[Math.floor(Math.random() * losers.length)] + '"></img>', null, 8000)
+      flash('<img src="'  + @losers[Math.floor(Math.random() * @losers.length)] + '"></img>', null, 8000)
       stopTimer()
     
     if @game.win

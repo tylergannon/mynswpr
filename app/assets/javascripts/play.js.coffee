@@ -9,17 +9,6 @@ $ ->
   $(document).on 'click',    '#load_game',      loadGameClicked       
   $(document).on 'click',    '#validate',       validateClicked       
   startNewGame()
-  
-
-losers = [
-  'http://cdn.memegenerator.net/instances/400x/36522451.jpg',
-  'http://cdn.memegenerator.net/instances/400x/36522530.jpg',
-  'http://cdn.memegenerator.net/instances/400x/36522861.jpg',
-  'http://cdn.memegenerator.net/instances/400x/36522965.jpg',
-  'http://cdn.memegenerator.net/instances/400x/36523338.jpg',
-  'http://cdn.memegenerator.net/instances/400x/36523457.jpg'
-  ]
-
     
 squareClicked = (e) ->
   unless game.boom
@@ -101,4 +90,4 @@ window.winGame = () ->
     if square.isMine
       square.marked = true
   drawBoard()
-  
+
