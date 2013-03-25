@@ -35,7 +35,7 @@ startNewGame = (new_game) ->
   new_game ?= new MineSweeper.Game()
   window.game = new_game
   drawBoard()
-  resetTimer()
+  MineSweeper.View.prototype.resetTimer()
   
 clearClicked = (e) ->
   e.preventDefault()
@@ -57,29 +57,6 @@ validateClicked = (e) ->
     flash("You haven't marked all the mines yet!")
   return false
 
-resetTimer = ->
-  $("#seconds").text "00"
-  $("#minutes").text "00"
-  stopTimer()
-  window.timer = setInterval "showTime()", 1000
-
-stopTimer = ->
-  clearInterval window.timer
-  
-
-window.showTime = ->
-  s = parseInt($("#seconds").text())
-  m = parseInt($("#minutes").text())
-  s++
-  if s > 59
-    s = 0
-    m++
-  if s < 10
-    s = "0" + s.toString()
-  if m < 10
-    m = "0" + m.toString()
-  $("#seconds").text s
-  $("#minutes").text m
 
 drawBoard = () ->
   view = new MineSweeper.View(window.game)

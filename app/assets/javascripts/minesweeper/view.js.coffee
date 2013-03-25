@@ -13,7 +13,6 @@ class View
       'http://cdn.memegenerator.net/instances/400x/36523457.jpg'
       ]
     
-    
   drawBoard: () ->
   # $('#canvas').html('<div id="gameboard" />')
   
@@ -21,14 +20,12 @@ class View
       @board.addClass('boom')
       flash('Awwwwww Crap!')
       flash('<img src="'  + @losers[Math.floor(Math.random() * @losers.length)] + '"></img>', null, 8000)
-      stopTimer()
+      @stopTimer()
     
     if @game.win
-    
       @board.addClass('boom')
       flash('Yayyyyyy!!!')
-      # $('#canvas').append('<div id="boom">Yayyyyy!</div>')
-      stopTimer()
+      @stopTimer()
 
     @board.addClass('size' + @game.size.toString())
     
@@ -65,5 +62,29 @@ class View
         $element.addClass('cleared')
       
       @board.append($element)
+
+  resetTimer: ->
+    $("#seconds").text "00"
+    $("#minutes").text "00"
+    @stopTimer()
+    window.timer = setInterval @showTime, 1000
+
+  stopTimer: ->
+    clearInterval window.timer
+
+  showTime: ->
+    s = parseInt($("#seconds").text())
+    m = parseInt($("#minutes").text())
+    s++
+    if s > 59
+      s = 0
+      m++
+    if s < 10
+      s = "0" + s.toString()
+    if m < 10
+      m = "0" + m.toString()
+    $("#seconds").text s
+    $("#minutes").text m
+
 
 window.MineSweeper.View = View
