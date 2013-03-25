@@ -12,6 +12,7 @@
 //
 //= require minesweeper/model
 //= require minesweeper/view
+//= require minesweeper/controller
 //= require flash
-//= require play
+
 
