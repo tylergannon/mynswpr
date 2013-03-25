@@ -224,40 +224,40 @@ a#mine_count {
 }
 
 #new_game {
-  background-image: url('/assets/media-play.png');
+  background-image: asset-url('media-play.png');
 }
 
 #new_game_easy {
-  background-image: url('/assets/easy.jpg');
+  background-image: asset-url('easy.jpg');
 }
 
 #new_game_medium {
-  background-image: url('/assets/medium.jpg');
+  background-image: asset-url('medium.jpg');
 }
 
 #new_game_hard {
-  background-image: url('/assets/hard.jpg');
+  background-image: asset-url('hard.jpg');
 }
 
 #validate {
-  background-image: url('/assets/smiley.png');
+  background-image: asset-url('smiley.png');
 }
 
 #save_game {
-  background-image: url('/assets/media-pause.png');
+  background-image: asset-url('media-pause.png');
 }
 
 #load_game {
-  background-image: url('/assets/media-repeat-alt.png');
+  background-image: asset-url('media-repeat-alt.png');
 }
 .clear_adjacent * {
-  background-image: url('/assets/blowup.png');
+  background-image: asset-url('blowup.png');
 }
 .mark_square * {
-  background-image: url('/assets/bomb.png');
+  background-image: asset-url('bomb.png');
 }
 .unmark_square * {
-  background-image: url('/assets/nobomb.png');
+  background-image: asset-url('nobomb.png');
 }
 
 #template {

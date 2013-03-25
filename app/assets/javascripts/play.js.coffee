@@ -9,8 +9,18 @@ $ ->
   $(document).on 'click',    '#load_game',      loadGameClicked       
   $(document).on 'click',    '#validate',       validateClicked       
   startNewGame()
+  
 
-window.flash = (message, image) ->
+losers = [
+  'http://cdn.memegenerator.net/instances/400x/36522451.jpg',
+  'http://cdn.memegenerator.net/instances/400x/36522530.jpg',
+  'http://cdn.memegenerator.net/instances/400x/36522861.jpg',
+  'http://cdn.memegenerator.net/instances/400x/36522965.jpg',
+  'http://cdn.memegenerator.net/instances/400x/36523338.jpg',
+  'http://cdn.memegenerator.net/instances/400x/36523457.jpg'
+  ]
+
+window.flash = (message, image, time) ->
   $message = $('<div class="message">' + message + '</div>')
   if image?
     $message.css('background-image', image)
@@ -18,7 +28,7 @@ window.flash = (message, image) ->
     $message.css('background-repeat', 'no-repeat')
     $message.css('text-indent', '90px')
   $('.flash').append $message
-  $message.fadeOut 3000, () ->
+  $message.fadeOut (time || 3000), () ->
     $message.remove()
     
 squareClicked = (e) ->
@@ -71,8 +81,12 @@ validateClicked = (e) ->
 resetTimer = ->
   $("#seconds").text "00"
   $("#minutes").text "00"
-  clearInterval window.timer
+  stopTimer()
   window.timer = setInterval "showTime()", 1000
+
+stopTimer = ->
+  clearInterval window.timer
+  
 
 window.showTime = ->
   s = parseInt($("#seconds").text())
@@ -95,7 +109,7 @@ drawBoard = () ->
   if game.boom
     $('#gameboard').addClass('boom')
     flash('Awwwwww Crap!')
-    # $('#canvas').append('<div id="boom">Aww Crap!</div>')
+    flash('<img src="'  + losers[Math.floor(Math.random() * losers.length)] + '"></img>', null, 8000)
     stopTimer()
     
   if game.win
