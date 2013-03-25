@@ -224,40 +224,40 @@ a#mine_count {
 }
 
 #new_game {
-  background-image: asset-url('media-play.png');
+  background-image: asset-url('games/minesweeper/media-play.png');
 }
 
 #new_game_easy {
-  background-image: asset-url('easy.jpg');
+  background-image: asset-url('games/minesweeper/easy.jpg');
 }
 
 #new_game_medium {
-  background-image: asset-url('medium.jpg');
+  background-image: asset-url('games/minesweeper/medium.jpg');
 }
 
 #new_game_hard {
-  background-image: asset-url('hard.jpg');
+  background-image: asset-url('games/minesweeper/hard.jpg');
 }
 
 #validate {
-  background-image: asset-url('smiley.png');
+  background-image: asset-url('games/minesweeper/smiley.png');
 }
 
 #save_game {
-  background-image: asset-url('media-pause.png');
+  background-image: asset-url('games/minesweeper/media-pause.png');
 }
 
 #load_game {
-  background-image: asset-url('media-repeat-alt.png');
+  background-image: asset-url('games/minesweeper/media-repeat-alt.png');
 }
 .clear_adjacent * {
-  background-image: asset-url('blowup.png');
+  background-image: asset-url('games/minesweeper/blowup.png');
 }
 .mark_square * {
-  background-image: asset-url('bomb.png');
+  background-image: asset-url('games/minesweeper/bomb.png');
 }
 .unmark_square * {
-  background-image: asset-url('nobomb.png');
+  background-image: asset-url('games/minesweeper/nobomb.png');
 }
 
 #template {
