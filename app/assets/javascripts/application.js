@@ -11,5 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require minesweeper/model
+//= require minesweeper/view
+//= require flash
 //= require play
 

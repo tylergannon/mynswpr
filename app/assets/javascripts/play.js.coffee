@@ -20,16 +20,6 @@ losers = [
   'http://cdn.memegenerator.net/instances/400x/36523457.jpg'
   ]
 
-window.flash = (message, image, time) ->
-  $message = $('<div class="message">' + message + '</div>')
-  if image?
-    $message.css('background-image', image)
-    $message.css('background-size', '90px')
-    $message.css('background-repeat', 'no-repeat')
-    $message.css('text-indent', '90px')
-  $('.flash').append $message
-  $message.fadeOut (time || 3000), () ->
-    $message.remove()
     
 squareClicked = (e) ->
   unless game.boom
@@ -102,58 +92,9 @@ window.showTime = ->
   $("#seconds").text s
   $("#minutes").text m
 
-
 drawBoard = () ->
-  $('#canvas').html('<div id="gameboard" />')
-  
-  if game.boom
-    $('#gameboard').addClass('boom')
-    flash('Awwwwww Crap!')
-    flash('<img src="'  + losers[Math.floor(Math.random() * losers.length)] + '"></img>', null, 8000)
-    stopTimer()
-    
-  if game.win
-    $('#gameboard').addClass('boom')
-    flash('Yayyyyyy!!!')
-    # $('#canvas').append('<div id="boom">Yayyyyy!</div>')
-    stopTimer()
-
-  $('#gameboard').addClass('size' + game.size.toString())
-    
-  $('#mine_count').text game.minesRemaining()
-  
-  for i in [0..game.squares.length-1]
-    square = game.squares[i]
-    $element = $ '<span/>'
-
-    $element.append $('#template .controls').clone()
-
-    $element.append '<div class="content" />'
-      
-    if square.adjacentMines > 0
-      $element.addClass 'adjacentMines' + square.adjacentMines.toString()
-      $element.find('.content').html square.adjacentMines.toString()
-    else
-      $element.addClass 'adjacentMines0'
-      $element.find('.content').html '&nbsp;'
-      
-      
-    $element.data('id', i)
-    
-    if square.clicked
-      $element.addClass('clicked')
-    
-    if square.isMine
-      $element.addClass('mine')
-      
-    if square.marked
-      $element.addClass('marked')
-      
-    if square.cleared
-      $element.addClass('cleared')
-      
-    $('#gameboard').append($element)
-
+  view = new MineSweeper.View(window.game)
+  $('#canvas').html view.drawBoard()
 
 window.winGame = () ->
   for square in game.squares
