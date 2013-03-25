@@ -4,7 +4,7 @@
 
 describe "Application", ->
   beforeEach ->
-    loadFixtures 'example_fixture.html' # located at 'spec/javascripts/fixtures/example_fixture.html.haml'
+    loadFixtures 'minesweeper.html' # located at 'spec/javascripts/fixtures/example_fixture.html.haml'
     $('#new_game_easy').click()
   
   describe "When 'new game' is clicked", ->

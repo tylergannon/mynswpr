@@ -11,6 +11,6 @@ if defined?(Jasminerice) == 'constant'
     #config.mount_at = '/jasmine'
 
     # Specify a path where your fixutures can be found. Defaults to 'spec/javascripts/fixtures'
-    #config.fixture_path = 'spec/javascripts/fixtures'
+    config.fixture_path = 'app/views/games'
   end
 end
